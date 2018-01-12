@@ -12,7 +12,7 @@ get_stationswe_data <- function(yr=2017,station_locs,network='snotel'){
 		site_id=379
 		for(site_id in station_locs$Site_ID){
 			station_yr_file=file.path(getwd(),paste0(PATH_SNOTEL,'/',site_id,'-',yr,'CY.csv'))
-			if(!file.exists(station_yr_file)){
+			if(!file.exists(station_yr_file)&&site_id!=379){
 				system2('source',paste(nwcc_download_script, site_id, 'STAND Daily', yr, 'CY'),stdout=file.path(getwd(),paste0(PATH_SNOTEL,'/',site_id,'-',yr,'CY.csv')))
 			}
 		}
