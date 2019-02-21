@@ -153,7 +153,7 @@ setup_modeldata <- function(snoteltoday.sp,phvsnotel,simfsca,SNOW_VAR,PHV_VARS,P
 	## export data4gis with all downloaded stations
 	coordinates(data4gis) <- ~longitude+latitude
 	proj4string(data4gis) <- proj4string(snoteltoday.sp)
-	data4gis <- extract(phvstack,data4gis,sp=T)#add phv values for each station
+	data4gis <- raster::extract(phvstack,data4gis,sp=T)#add phv values for each station
 	snotelfilename=paste0(PATH_OUTPUT,'/pillow-',strftime(simdate,'%d%b%Y'),'.gpkg')
 	# if(!file.exists(snotelfilename)){
 		writeOGR(data4gis,dsn=snotelfilename,layer='pillow_data',driver='GPKG',overwrite_layer=TRUE)
